@@ -1,22 +1,21 @@
 // @flow
-
 import React, { Component } from 'react';
+
+import { Provider } from 'react-redux'
 
 import {
   AppRegistry,
   StyleSheet,
-  View,
   Navigator,
 } from 'react-native';
+
+import Store from './src/index'
 
 import Home from './src/Home/Home'
 import MovieProfile from './src/MovieProfile/MovieProfile'
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    paddingTop: 30,
-    flexDirection: 'column',
+  navigator: {
     backgroundColor: '#121314',
   },
 });
@@ -50,12 +49,14 @@ export default class TheMovieDB extends Component {
   }
 
   render() {
-
     return (
-      <Navigator
-        initialRoute={{ title: 'Home' }}
-        renderScene={this._renderScene}
-      />
+      <Provider store={Store}>
+        <Navigator
+          initialRoute={{ title: 'Home' }}
+          style={styles.navigator}
+          renderScene={this._renderScene}
+        />
+      </Provider>
     );
   }
 }

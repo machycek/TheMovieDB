@@ -1,14 +1,29 @@
 // @flow
 import React, { Component } from 'react'
 
+import theme from '../config/theme'
+
 import {
-  View,
+  ScrollView,
   StyleSheet,
+  Text,
+  Dimensions,
 } from 'react-native'
+
+const { width, height } = Dimensions.get('window')
 
 const styles = StyleSheet.create({
   container: {
-
+    // color: '#fff',
+    width,
+    height,
+    backgroundColor: theme.main,
+  },
+  title: {
+    color: '#fff',
+    paddingTop: 30,
+    textAlign: 'center',
+    fontSize: 20,
   }
 })
 
@@ -26,10 +41,9 @@ export default class  extends Component {
     } = this.props
 
     return (
-      <View>
-        <Text>{movie.title}</Text>
-
-      </View>
+      <ScrollView style={styles.container}>
+        <Text style={styles.title}>{movie.title}</Text>
+      </ScrollView>
     )
   }
 }
